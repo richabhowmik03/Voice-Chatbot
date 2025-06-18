@@ -171,4 +171,4 @@ if __name__ == '__main__':
     # print("- AZURE_CHATGPT_ENDPOINT")
     # print("- endpoint")
     
-    app.run(debug=True, host='0.0.0.0', port=5000)
+    app.run(debug=True, host='127.0.0.1', port=5000)
