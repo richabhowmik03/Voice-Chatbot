@@ -38,7 +38,9 @@ const ChatInterface: React.FC = () => {
 
   const checkBackendHealth = async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/health');
+      const response = await fetch(
+        "https://voice-app-backend-0y4a.onrender.com/api/health"
+      );
       if (response.ok) {
         setConnectionStatus('connected');
       } else {
@@ -66,17 +68,20 @@ const ChatInterface: React.FC = () => {
     setConnectionStatus('connecting');
 
     try {
-      const response = await fetch('http://localhost:5000/api/chat', {
-        method: 'POST',
-        headers: { 
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ 
-          message: text, 
-          isVoice,
-          sessionId 
-        })
-      });
+      const response = await fetch(
+        "https://voice-app-backend-0y4a.onrender.com/api/chat",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            message: text,
+            isVoice,
+            sessionId,
+          }),
+        }
+      );
 
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
@@ -87,10 +92,12 @@ const ChatInterface: React.FC = () => {
       const botResponse: Message = {
         id: (Date.now() + 1).toString(),
         text: data.response,
-        sender: 'bot',
+        sender: "bot",
         timestamp: new Date(),
         hasAudio: !!data.audioUrl,
-        audioUrl: data.audioUrl ? `http://localhost:5000${data.audioUrl}` : undefined,
+        audioUrl: data.audioUrl
+          ? `https://voice-app-backend-0y4a.onrender.com${data.audioUrl}`
+          : undefined,
       };
 
       setMessages(prev => [...prev, botResponse]);
