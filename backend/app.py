@@ -160,7 +160,11 @@ def health_check():
     """Health check endpoint"""
     return jsonify({'status': 'healthy', 'message': 'Voice chatbot backend is running'})
 
-if __name__ == '__main__':
+
+@app.route("/")
+def hello():
+    return "Hello, production!"
+# if __name__ == '__main__':
     # print("Starting Voice Chatbot Backend...")
     # print("Make sure your .env file contains all required Azure credentials:")
     # print("- AZURE_SPEECH_KEY")
@@ -171,4 +175,4 @@ if __name__ == '__main__':
     # print("- AZURE_CHATGPT_ENDPOINT")
     # print("- endpoint")
     
-    app.run(debug=True, host='127.0.0.1', port=5000)
+    # app.run(debug=True, host='127.0.0.1', port=5000)
